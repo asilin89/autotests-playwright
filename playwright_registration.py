@@ -31,6 +31,9 @@ with sync_playwright() as playwright:
     context.storage_state(path="browser-state.json")
 
 
+# Create new session
+# Create context which uses "browser-state.json" data to authenticate
+# Goes directly to dashboard page
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context(storage_state="browser-state.json")
