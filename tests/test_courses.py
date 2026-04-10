@@ -1,5 +1,6 @@
 from pages.courses_list_page import CoursesListPage
 from pages.create_course_page import CreateCoursePage
+import pytest
 
 
 def test_create_course(courses_list_page: CoursesListPage,create_course_page: CreateCoursePage):
@@ -24,10 +25,21 @@ def test_create_course(courses_list_page: CoursesListPage,create_course_page: Cr
     # )
     create_course_page.click_create_course_button()
 
-    courses_list_page.check_visible_courses_title()
-    courses_list_page.check_visible_create_course_button()
+    courses_list_page.toolbar_view.check_visible()
     courses_list_page.course_view.check_visible(
         title="Tiger", max_score="100", min_score="5", description="Tiger Trade", estimated_time="1 week"
     )
+
+
+@pytest.mark.courses
+@pytest.mark.regression
+def test_empty_course_list(courses_list_page: CoursesListPage):
+    courses_list_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/")
+
+    courses_list_page.navbar.check_visible('username1')
+    courses_list_page.sidebar.check_visible()
+
+    courses_list_page.toolbar_view.check_visible()
+    courses_list_page.check_visible_empty_view()
 
 
