@@ -19,9 +19,9 @@ def test_create_course(courses_list_page: CoursesListPage,create_course_page: Cr
 
     create_course_page.image_upload_widget.upload_preview_image("./testdata/files/image.png")
     create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
-    # create_course_page.fill_create_course_form(
-    #     title="Tiger", max_score="100", min_score="5", description="Tiger Trade", estimated_time="1 week"
-    # )
+    create_course_page.fill_create_course_form(
+        title="Tiger", max_score="100", min_score="5", description="Tiger Trade", estimated_time="1 week"
+    )
     create_course_page.click_create_course_button()
 
     courses_list_page.toolbar_view.check_visible()
