@@ -1,24 +1,20 @@
+from components.authenticaation.login_form_component import LoginFormComponent
 from pages.base_page import BasePage
 from playwright.sync_api import Page, expect
+from elements.button import Button
+from elements.link import Link
+from elements.text import Text
 
 
 class LoginPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.email_input = page.get_by_test_id("login-form-email-input").locator("input")
-        self.password_input = page.get_by_test_id("login-form-password-input").locator("input")
-        self.login_button = page.get_by_test_id("login-page-login-button")
-        self.registration_link = page.get_by_test_id("registration-page-registration-button")
-        self.error_alert = page.get_by_test_id("login-page-wrong-email-or-password-alert")
+        self.login_form = LoginFormComponent(page)
 
-
-    def fill_login_form(self, email: str, password: str):
-        self.email_input.fill(email)
-        expect(self.email_input).to_have_value(email)
-
-        self.password_input.fill(password)
-        expect(self.password_input).to_have_value(password)
+        self.login_button = Button(page, "login-page-login-button", "Login")
+        self.registration_link = Link(page, "registration-page-registration-button", "Registration")
+        self.error_alert = Text(page, "login-page-wrong-email-or-password-alert", "Error Alert")
 
 
     def click_login_button(self):
@@ -30,5 +26,5 @@ class LoginPage(BasePage):
 
 
     def check_visible_wrong_email_or_password_alert(self):
-        expect(self.error_alert).to_be_visible()
-        expect(self.error_alert).to_have_text("Wrong email or password")
+        self.error_alert.check_visible()
+        self.error_alert.check_have_text("Wrong email or password")
