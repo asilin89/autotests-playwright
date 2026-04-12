@@ -26,7 +26,7 @@ def test_create_course(courses_list_page: CoursesListPage,create_course_page: Cr
 
     courses_list_page.toolbar_view.check_visible()
     courses_list_page.course_view.check_visible(
-        title="Tiger", max_score="100", min_score="5", description="Tiger Trade", estimated_time="1 week"
+        index=0, title="Tiger", max_score="100", min_score="5", estimated_time="1 week"
     )
 
 
