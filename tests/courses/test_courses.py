@@ -1,5 +1,5 @@
-from pages.courses_list_page import CoursesListPage
-from pages.create_course_page import CreateCoursePage
+from pages.courses.courses_list_page import CoursesListPage
+from pages.courses.create_course_page import CreateCoursePage
 import pytest
 
 

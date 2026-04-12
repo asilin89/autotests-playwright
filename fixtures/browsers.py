@@ -1,6 +1,8 @@
 import pytest
 from playwright.sync_api import sync_playwright, Page, Playwright
 
+from pages.authentication.registration_page import RegistrationPage
+
 
 @pytest.fixture
 def chromium_page(playwright: Playwright) -> Page:
@@ -15,24 +17,11 @@ def initialize_browser_state(playwright: Playwright):
     context = browser.new_context()
     page = context.new_page()
 
-    # Go to login page
-    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
-
-    # Find email input and fill it out
-    email_input = page.get_by_test_id("registration-form-email-input").locator("input")
-    email_input.fill("email@example.com")
-
-    # Find username input and fill it out
-    username_input = page.get_by_test_id("registration-form-username-input").locator("input")
-    username_input.fill("username1")
-
-    # Find password input and fill it out
-    password_input = page.get_by_test_id("registration-form-password-input").locator("input")
-    password_input.fill("password1")
-
-    # Find Register button and click on it
-    registration_button = page.get_by_test_id("registration-page-registration-button")
-    registration_button.click()
+    # Go to register page, fill the form and click Register button
+    registration_page = RegistrationPage(page=page)
+    registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+    registration_page.registration_form.fill(email="email@example.com", username= "username1")
+    registration_page.click_registration_button()
 
     # After login we store localStorage data into "browser-state.json" file
     context.storage_state(path="browser-state.json")
