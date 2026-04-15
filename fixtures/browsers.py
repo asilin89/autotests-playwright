@@ -20,7 +20,7 @@ def initialize_browser_state(playwright: Playwright):
     # Go to register page, fill the form and click Register button
     registration_page = RegistrationPage(page=page)
     registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
-    registration_page.registration_form.fill(email="email@example.com", username= "username1")
+    registration_page.registration_form.fill(email="email@example.com", username= "username1", password="password1")
     registration_page.click_registration_button()
 
     # After login we store localStorage data into "browser-state.json" file
