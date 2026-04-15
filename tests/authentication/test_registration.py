@@ -1,13 +1,16 @@
 from playwright.sync_api import Page, expect
 import pytest
-
+import allure
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
+from tools.allure.tags import AllureTags
 
 
 @pytest.mark.regression
 @pytest.mark.registration
+@allure.tag(AllureTags.REGRESSION, AllureTags.REGISTRATION)
 class TestRegistration:
+    @allure.title('User registration with email, username and password')
     def test_successful_registration(self, dashboard_page: DashboardPage, register_page: RegistrationPage):
         register_page.visit(
             "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration"

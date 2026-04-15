@@ -1,11 +1,15 @@
 from pages.courses.courses_list_page import CoursesListPage
 from pages.courses.create_course_page import CreateCoursePage
 import pytest
+import allure
+from tools.allure.tags import AllureTags
 
 
 @pytest.mark.courses
 @pytest.mark.regression
+@allure.tag(AllureTags.COURSES, AllureTags.REGRESSION)
 class TestCourses:
+    @allure.title('Create course')
     def test_create_course(self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
 
@@ -32,7 +36,7 @@ class TestCourses:
             index=0, title="Tiger", max_score="100", min_score="5", estimated_time="1 week"
         )
 
-
+    @allure.title('Check displaying of empty courses list')
     def test_empty_course_list(self, courses_list_page: CoursesListPage):
         courses_list_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/")
 
