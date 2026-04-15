@@ -3,11 +3,17 @@ from pages.courses.create_course_page import CreateCoursePage
 import pytest
 import allure
 from tools.allure.tags import AllureTags
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
 
 
 @pytest.mark.courses
 @pytest.mark.regression
 @allure.tag(AllureTags.COURSES, AllureTags.REGRESSION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.COURSES)
+@allure.story(AllureStory.COURSES)
 class TestCourses:
     @allure.title('Create course')
     def test_create_course(self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
