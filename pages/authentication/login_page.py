@@ -6,6 +6,7 @@ from playwright.sync_api import Page, expect
 from elements.button import Button
 from elements.link import Link
 from elements.text import Text
+import allure
 
 
 class LoginPage(BasePage):
@@ -28,6 +29,7 @@ class LoginPage(BasePage):
         self.check_current_url(re.compile(".*/#/auth/registration"))
 
 
+    @allure.step("Check visible wrong email or password alert")
     def check_visible_wrong_email_or_password_alert(self):
         self.error_alert.check_visible()
         self.error_alert.check_have_text("Wrong email or password")

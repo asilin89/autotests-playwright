@@ -4,6 +4,7 @@ from components.base_component import BaseComponent
 from components.courses.course_view_menu_component import CourseViewMenuComponent
 from elements.text import Text
 from elements.image import Image
+import allure
 
 
 class CourseViewComponent(BaseComponent):
@@ -19,6 +20,7 @@ class CourseViewComponent(BaseComponent):
         self.estimated_time_text = Text(page, "course-estimated-time-info-row-view-text", "Estimated time")
 
 
+    @allure.step('Check visible course at index "{index}"')
     def check_visible(
             self,
             index: int,

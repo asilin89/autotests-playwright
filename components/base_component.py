@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from typing import Pattern
+import allure
 
 
 class BaseComponent:
@@ -8,4 +9,5 @@ class BaseComponent:
 
 
     def check_current_url(self, expected_url: Pattern[str]):
-        expect(self.page).to_have_url(expected_url)
+        with allure.step(f'Verifying current url is {expected_url.pattern}'):
+            expect(self.page).to_have_url(expected_url)
