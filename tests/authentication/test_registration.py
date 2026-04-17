@@ -17,6 +17,7 @@ from allure_commons.types import Severity
 @allure.feature(AllureFeature.AUTHENTICATION)
 @allure.story(AllureStory.REGISTRATION)
 class TestRegistration:
+    @pytest.mark.xdist_group(name="authorization-group")
     @allure.title('User registration with email, username and password')
     @allure.severity(Severity.CRITICAL)
     def test_successful_registration(self, dashboard_page: DashboardPage, register_page: RegistrationPage):
