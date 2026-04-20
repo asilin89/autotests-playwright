@@ -14,3 +14,9 @@ allure-report
 *.json
 videos
 tracing
+
+#coverage
+coverage-results
+coverage.html
+coverage-history.json
+coverage-report.json
